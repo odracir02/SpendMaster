@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_drawer_layout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
@@ -69,7 +69,7 @@
             app:layout_constraintVertical_bias="0.702" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btConsultar"
             android:layout_width="77dp"
             android:layout_height="103dp"
             android:background="@android:color/transparent"
@@ -80,47 +80,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.705" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="77dp"
-            android:layout_height="103dp"
-            android:background="@android:color/transparent"
-            android:text="Button"
-            android:textColor="#00FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.176"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="77dp"
-            android:layout_height="103dp"
-            android:background="@android:color/transparent"
-            android:text="Button"
-            android:textColor="#00FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="77dp"
-            android:layout_height="103dp"
-            android:background="@android:color/transparent"
-            android:text="Button"
-            android:textColor="#00FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
 
         <Button
             android:id="@+id/button5"
@@ -185,40 +144,17 @@
             app:layout_constraintVertical_bias="0.704"
             app:srcCompat="@drawable/taza_de_cafe" />
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="77dp"
-            android:layout_height="103dp"
+        <TextView
+            android:id="@+id/tvConsulta"
+            android:layout_width="0dp"
+            android:layout_height="440dp"
+            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141"
-            app:srcCompat="@drawable/cartera" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="77dp"
-            android:layout_height="103dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141"
-            app:srcCompat="@drawable/portafolio" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="77dp"
-            android:layout_height="103dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141"
-            app:srcCompat="@drawable/pago" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

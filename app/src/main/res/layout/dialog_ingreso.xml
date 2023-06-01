@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:hint="Cantidad"
+                android:hint="Agregue un ingreso"
                 app:boxCornerRadiusBottomEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
@@ -51,13 +51,28 @@
                 app:layout_constraintTop_toBottomOf="@id/tvHeader">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etAmountG"
+                    android:id="@+id/etAmountI"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
+                    android:digits="0123456789"
+                    android:hint=""
+                    android:inputType="number"
                     android:padding="16dp"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/etTitulo"
+                android:layout_width="379dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="26dp"
+                android:hint="Titulo"
+                android:inputType="text"
+                android:maxLength="20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilAmount" />
 
             <Spinner
                 android:id="@+id/spCategory"
@@ -70,7 +85,7 @@
                 android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilAmount" />
+                app:layout_constraintTop_toBottomOf="@id/etTitulo" />
 
             <EditText
                 android:id="@+id/etDescription"

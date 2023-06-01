@@ -9,15 +9,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.spendmaster.components.miSQLiteHelper
 import com.example.spendmaster.databinding.DialogGastoBinding
+import android.text.InputFilter
+import android.text.Spanned
 
 class GastoDialog(
     private val onSubmitClickListener: (Float) -> Unit
 ): DialogFragment() {
 
-
     lateinit var binding : DialogGastoBinding
     lateinit var dBHelper: miSQLiteHelper
-
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -25,15 +25,10 @@ class GastoDialog(
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
-        val description = if (binding.etDescription.text.isNotBlank()) {
-            binding.etDescription.text.toString()
-        } else {
-            ""
-        }
-
-        val isIncome = 0
-
         dBHelper = miSQLiteHelper(requireContext())
+
+        // Aplicar el filtro de entrada al campo etAmountG
+        binding.etAmountG.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter())
 
         binding.bAddGasto.setOnClickListener {
             val title = binding.etTitulo.text.toString()
@@ -50,13 +45,28 @@ class GastoDialog(
             }
         }
 
-        binding.bAddGasto.setOnClickListener {
-            onSubmitClickListener.invoke(binding.etAmountG.text.toString().toFloat())
-            dismiss()
-        }
-
         val dialog = builder.create()
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return dialog
+    }
+
+    // Clase DecimalDigitsInputFilter
+    class DecimalDigitsInputFilter : InputFilter {
+        private val decimalPattern = "\\d+(\\.\\d{0,2})?"
+
+        override fun filter(
+            source: CharSequence?,
+            start: Int,
+            end: Int,
+            dest: Spanned?,
+            dstart: Int,
+            dend: Int
+        ): CharSequence? {
+            val input = dest.toString() + source.toString()
+            if (input.matches(decimalPattern.toRegex())) {
+                return null
+            }
+            return ""
+        }
     }
 }

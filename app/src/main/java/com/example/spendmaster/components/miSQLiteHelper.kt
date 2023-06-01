@@ -22,7 +22,6 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
                     "isIncome INTEGER, " +
                     "category TEXT, " +
                     "description TEXT, " +
-                    "date TEXT, " +
                     "value REAL)"
 
             db!!.execSQL(creacionOperacion)
