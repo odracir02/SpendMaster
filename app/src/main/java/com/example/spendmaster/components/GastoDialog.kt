@@ -25,14 +25,6 @@ class GastoDialog(
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
 
-        val description = if (binding.etDescription.text.isNotBlank()) {
-            binding.etDescription.text.toString()
-        } else {
-            ""
-        }
-
-        val isIncome = 0
-
         dBHelper = miSQLiteHelper(requireContext())
 
         binding.bAddGasto.setOnClickListener {
