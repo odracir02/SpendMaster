@@ -3,9 +3,11 @@ package com.example.spendmaster
 import GastoDialog
 import IngresoDialog
 import android.database.sqlite.SQLiteDatabase
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.spendmaster.components.miSQLiteHelper
 import com.example.spendmaster.databinding.ActivityMainBinding
 
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var dbHelper: miSQLiteHelper
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -81,6 +84,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btDelete.setOnClickListener {
+            val idText = binding.etId.text.toString().trim()
+            if (idText.isNotBlank()) {
+                val id = idText.toInt()
+                val cantidad = dbHelper.borrarDatos(id)
+                binding.etId.text.clear()
+
+                if (cantidad > 0) {
+                    Toast.makeText(this, "Datos borrados: $cantidad", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "No se encontró ningún registro con el ID: $id", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "El campo del ID está en blanco", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
 

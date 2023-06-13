@@ -17,7 +17,7 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
 
         try {
             val creacionOperacion = "CREATE TABLE operation " +
-                    "(operation_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "title TEXT, " +
                     "isIncome INTEGER, " +
                     "category TEXT, " +
@@ -52,4 +52,16 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
             Log.e(TAG, "Error al insertar los datos: ${e.message}")
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun borrarDatos(id: Int): Int {
+        val args = arrayOf(id.toString())
+
+        val db = this.writableDatabase
+        val borrados = db.delete("operation", "_id = ?", args)  // Corrección en la cláusula WHERE
+        db.close()
+        return borrados
+    }
+
+
 }
