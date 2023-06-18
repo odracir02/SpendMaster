@@ -8,9 +8,22 @@
     android:layout_height="match_parent"
     android:textAlignment="center"
     tools:context=".MainActivity"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText"
+    tools:openDrawer="start">
 
 
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -119,15 +132,14 @@
 
         <TextView
             android:id="@+id/tvConsulta"
-            android:layout_width="0dp"
-            android:layout_height="440dp"
+            android:layout_width="415dp"
+            android:layout_height="382dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.171" />
 
         <TextView
             android:id="@+id/textView"

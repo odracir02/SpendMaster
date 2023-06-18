@@ -1,17 +1,22 @@
 <resources>
     <string name="app_name">SpendMaster</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 
     <string-array name="categoriaI">
-        <item>Ingreso 1</item>
-        <item>Ingreso 2</item>
-        <item>Ingreso 3</item>
-        <item>Ingreso 4</item>
+        <item>Salario</item>
+        <item>Ahorros</item>
+        <item>Ingresos</item>
+        <item>Otros</item>
     </string-array>
     <string-array name="categoriaG">
-        <item>Gasto 1</item>
-        <item>Gasto 2</item>
-        <item>Gasto 3</item>
-        <item>Gasto 4</item>
+        <item>Transporte</item>
+        <item>Comida</item>
+        <item>Ropa</item>
+        <item>Social</item>
+        <item>Hogar</item>
+        <item>Entretenimiento</item>
+        <item>Otros</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -54,7 +54,7 @@
                     android:id="@+id/etAmountG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Introduzca cantidad"
+                    android:hint="Agregue un gasto"
                     android:inputType="numberDecimal"
                     android:padding="16dp"
                     android:textSize="18sp" />
