@@ -2,17 +2,18 @@ package com.example.spendmaster.components
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
 import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.example.spendmaster.MainActivity
 
 class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
     context, "spendmaster.db", null, 1) {
 
+    lateinit var mainActivity: MainActivity
     override fun onCreate(db: SQLiteDatabase?) {
 
         try {
@@ -31,8 +32,8 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        val BorradoOperacion = "DROP TABLE IF EXISTS operation"
-        db!!.execSQL(BorradoOperacion)
+        val borradoOperacion = "DROP TABLE IF EXISTS operation"
+        db!!.execSQL(borradoOperacion)
         onCreate(db)
     }
 
@@ -46,8 +47,12 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
             contentValues.put("category", category)
             contentValues.put("description", description)
             contentValues.put("value", value)
+
             db.insert("operation", null, contentValues)
             db.close()
+
+            // Llamar a un método en MainActivity para actualizar el saldo en la interfaz de usuario
+            mainActivity.actualizarSaldo()
         } catch (e: Exception) {
             Log.e(TAG, "Error al insertar los datos: ${e.message}")
         }
@@ -63,5 +68,20 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(
         return borrados
     }
 
+    fun obtenerSaldo(): Double {
+        var saldo = 0.0
+        val db = this.readableDatabase
+        val query = "SELECT SUM(value) FROM operation"
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            saldo = cursor.getDouble(0)
+        }
+
+        cursor.close()
+        db.close()
+
+        return saldo
+    }
 
 }

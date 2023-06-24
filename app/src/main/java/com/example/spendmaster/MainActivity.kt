@@ -2,18 +2,20 @@ package com.example.spendmaster
 
 import GastoDialog
 import IngresoDialog
+import android.content.Intent
 import android.content.res.Configuration
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.spendmaster.components.ActivityLista
 import com.example.spendmaster.components.miSQLiteHelper
 import com.example.spendmaster.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
@@ -24,6 +26,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var binding: ActivityMainBinding
     lateinit var dbHelper: miSQLiteHelper
+
+    private var saldo: Double = 0.0
+    private var nuevoSaldo: Double = 0.0
+    private lateinit var tvSaldo: TextView
+
+    fun actualizarSaldo() {
+        tvSaldo.text = String.format("%.2f €", nuevoSaldo)
+    }
 
     //Creamos el cursor para ver los datos de la BD
     private fun consultarDatos() {
@@ -74,24 +84,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         dbHelper = miSQLiteHelper(this)
 
+        tvSaldo = binding.tvSaldo
+
+        // Obtener el saldo inicial de la base de datos
+        saldo = dbHelper.obtenerSaldo()
+
+        actualizarSaldo()
+
         //Creamos funcionalidad para el boton de ingreso
         binding.addIngreso.setOnClickListener {
             IngresoDialog(
                 onSubmitClickListener = { cantidadI ->
                     ingreso = cantidadI
+                    saldo += cantidadI
                     Toast.makeText(this, "Se ha añadido un ingreso de: $cantidadI €", Toast.LENGTH_SHORT).show()
                     // Llamar a la función de consulta después de agregar un ingreso
                     consultarDatos()
+                    actualizarSaldo()
                 }
             ).show(supportFragmentManager, "dialog")
         }
 
-//Creamos funcionalidad para el boton de gasto
+        //Creamos funcionalidad para el boton de gasto
         binding.addGasto.setOnClickListener {
             GastoDialog(
                 onSubmitClickListener = { cantidadG ->
                     gasto = cantidadG
                     Toast.makeText(this, "Se ha añadido un gasto de: $cantidadG €", Toast.LENGTH_SHORT).show()
+
+                    // Llamar al método addDatos() sin incluir el argumento "saldo"
+                    val cantidadG: Double = cantidadG.toDouble()
+                    dbHelper.addDatos("Gasto", 0, "Categoría", "Descripción", cantidadG)
 
                     // Actualizar la UI en el subproceso principal
                     runOnUiThread {
@@ -142,8 +165,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.nav_item_one -> Toast.makeText(this, "Item 1", Toast.LENGTH_SHORT).show()
+        when (item.itemId) {
+            R.id.nav_item_one -> {
+                Toast.makeText(this, "Resumen", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ActivityLista::class.java)
+                startActivity(intent)
+            }
             R.id.nav_item_two -> Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show()
         }
         drawer.closeDrawer(GravityCompat.START)

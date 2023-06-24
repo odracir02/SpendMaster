@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#00000000" /> <!-- Transparente -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/dark_blue" /> <!-- Color negro para los bordes -->
+    <corners android:radius="8dp" /> <!-- Radio de las esquinas de la caja -->
+</shape>

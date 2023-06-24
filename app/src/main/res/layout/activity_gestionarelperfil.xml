@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gestionarelperfil">
+
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="310dp"
+        android:layout_height="49dp"
+        android:text="Gestion de perfil:"
+        android:textColor="@color/dark_blue"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+
+    <Button
+        android:id="@+id/botonidioma"
+        android:layout_width="231dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Idioma"
+        app:layout_constraintStart_toEndOf="@+id/imageView04"
+        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="231dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Modo oscuro/claro"
+        app:layout_constraintStart_toEndOf="@+id/imageView05"
+        app:layout_constraintTop_toBottomOf="@+id/botonidioma" />
+
+    <ImageView
+        android:id="@+id/imageView04"
+        android:layout_width="80dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView35"
+        app:srcCompat="@drawable/idioma" />
+
+    <ImageView
+        android:id="@+id/imageView08"
+        android:layout_width="80dp"
+        android:layout_height="55dp"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView05"
+        app:srcCompat="@drawable/vista" />
+
+    <ImageView
+        android:id="@+id/imageView05"
+        android:layout_width="80dp"
+        android:layout_height="55dp"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView04"
+        app:srcCompat="@drawable/dianoche" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="414dp"
+        android:layout_height="295dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="231dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="28dp"
+        android:text="Ver perfil"
+        android:backgroundTint="@color/dark_blue"
+        app:layout_constraintStart_toEndOf="@+id/imageView08"
+        app:layout_constraintTop_toBottomOf="@+id/button11" />
+</androidx.constraintlayout.widget.ConstraintLayout>

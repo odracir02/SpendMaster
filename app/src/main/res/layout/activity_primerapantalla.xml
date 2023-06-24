@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".primerapantalla">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="231dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="232dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Gestionar finanzas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="231dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="604dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonchat"
+        android:layout_width="231dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="420dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2334"
+        android:layout_width="83dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="420dp"
+        android:src="@drawable/dialogo"
+        app:layout_constraintEnd_toStartOf="@+id/botonchat"
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2333"
+        android:layout_width="83dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="328dp"
+        android:src="@drawable/proyecto"
+        app:layout_constraintEnd_toStartOf="@+id/botondecrearproyecto"
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2234"
+        android:layout_width="83dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="508dp"
+        android:src="@drawable/email"
+        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="231dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="508dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="mandar correo electronico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botondecrearproyecto"
+        android:layout_width="231dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="328dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Crear grupo compartido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="83dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="232dp"
+        android:src="@drawable/adminproyecto"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2634"
+        android:layout_width="83dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="604dp"
+        android:src="@drawable/administrar"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="415dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
