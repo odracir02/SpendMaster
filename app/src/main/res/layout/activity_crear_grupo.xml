@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TextView para mostrar el usuario actual -->
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="415dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/TvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario: Nomen Nescio"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- EditText para ingresar el nombre del grupo -->
+    <EditText
+        android:id="@+id/etNombreGrupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del grupo"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="32dp" />
+
+    <!-- Botón para crear el grupo -->
+
+    <Button
+        android:id="@+id/btCrearGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear grupo"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Botón para volver a la pantalla anterior -->
+    <Button
+        android:id="@+id/btVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

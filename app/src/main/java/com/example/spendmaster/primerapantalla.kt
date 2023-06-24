@@ -32,14 +32,14 @@ class primerapantalla : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.botondecrearproyecto.setOnClickListener {
-            //val intent = Intent(this, crearproyecto::class.java)
+        binding.btCrearGrupo.setOnClickListener {
+            val intent = Intent(this, crearGrupo::class.java)
             intent.putExtra("usuario", usuario)
             startActivity(intent)
         }
 
-        binding.button9.setOnClickListener {
-            val intent = Intent(this, perfil::class.java)
+        binding.btGestionPerfil.setOnClickListener {
+            val intent = Intent(this, gestionarelperfil::class.java)
             intent.putExtra("usuario", usuario)
             startActivity(intent)
         }
@@ -53,12 +53,6 @@ class primerapantalla : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 //.replace(android.R.id.content, chatFragment, CHAT_FRAGMENT)
                 .commit()
-        }
-
-        binding.button9.setOnClickListener{
-            //val intent = Intent(this, gestionarelperfil::class.java)
-            intent.putExtra("usuario", usuario)
-            startActivity(intent)
         }
 
 

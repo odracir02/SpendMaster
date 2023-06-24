@@ -12,14 +12,14 @@
         android:layout_height="61dp"
         android:layout_marginTop="232dp"
         android:backgroundTint="@color/dark_blue"
-        android:text="Gestionar finanzas"
+        android:text="Gestionar casa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/btGestionPerfil"
         android:layout_width="231dp"
         android:layout_height="61dp"
         android:layout_marginTop="604dp"
@@ -59,7 +59,7 @@
         android:layout_height="62dp"
         android:layout_marginTop="328dp"
         android:src="@drawable/proyecto"
-        app:layout_constraintEnd_toStartOf="@+id/botondecrearproyecto"
+        app:layout_constraintEnd_toStartOf="@+id/btCrearGrupo"
         app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,12 +89,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/botondecrearproyecto"
+        android:id="@+id/btCrearGrupo"
         android:layout_width="231dp"
         android:layout_height="61dp"
         android:layout_marginTop="328dp"
         android:backgroundTint="@color/dark_blue"
-        android:text="Crear grupo compartido"
+        android:text="Crear grupo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.661"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:layout_height="62dp"
         android:layout_marginTop="604dp"
         android:src="@drawable/administrar"
-        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/btGestionPerfil"
         app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

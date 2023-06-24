@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    private val splashTimeOut: Long = 2000 // 2 segundos
+    private val splashTimeOut: Long = 1500 // 1 segundo y medio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
             // Creamos un Intent para pasar de la pantalla de presentación (splash screen) a la siguiente actividad
             val intent = Intent(this, login2::class.java)
             startActivity(intent)
-            finish() // Cerramos la actividad de la pantalla de presentación (splash screen)
+            finish() // Cerramos la actividad de la splash screen
         }, splashTimeOut)
     }
 }

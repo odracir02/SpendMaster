@@ -11,10 +11,11 @@
         android:src="@drawable/perfil"
         android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:clickable="true" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/TvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -25,7 +26,7 @@
         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/TvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"

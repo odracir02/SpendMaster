@@ -22,8 +22,8 @@ class register : AppCompatActivity() {
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+        val collection = firestore.collection("usuarios")
 
-        val categoria = "Administrador"
 
         binding.bregistrar.setOnClickListener {
             val email = binding.tcorreo.text.toString()
@@ -43,11 +43,13 @@ class register : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    val nombre = binding.tcorreo.text.toString()
-
+                                    val correo = binding.tcorreo.text.toString()
+                                    val documentID = collection.document().id
+                                    val nombre = binding.tNombreCreartarea.text.toString()
                                     val user = hashMapOf(
                                         "nombre" to nombre,
-                                        "categoria" to categoria
+                                        "id" to documentID,
+                                        "Correo" to correo
                                     )
 
                                     firestore.collection("usuarios").add(user)

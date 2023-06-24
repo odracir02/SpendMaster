@@ -11,6 +11,12 @@
         android:theme="@style/Theme.SpendMaster"
         tools:targetApi="31">
         <activity
+            android:name=".gestionarCasa"
+            android:exported="false" />
+        <activity
+            android:name=".crearGrupo"
+            android:exported="false" />
+        <activity
             android:name=".gestionarelperfil"
             android:exported="false" />
         <activity
