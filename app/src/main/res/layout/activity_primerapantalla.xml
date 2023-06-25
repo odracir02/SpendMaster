@@ -7,7 +7,7 @@
     tools:context=".primerapantalla">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btGestionCasa"
         android:layout_width="231dp"
         android:layout_height="61dp"
         android:layout_marginTop="232dp"
@@ -71,13 +71,13 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="508dp"
         android:src="@drawable/email"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintEnd_toStartOf="@+id/btEmail"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btEmail"
         android:layout_width="231dp"
         android:layout_height="61dp"
         android:layout_marginTop="508dp"
@@ -106,7 +106,7 @@
         android:layout_height="62dp"
         android:layout_marginTop="232dp"
         android:src="@drawable/adminproyecto"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/btGestionCasa"
         app:layout_constraintHorizontal_bias="0.705"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

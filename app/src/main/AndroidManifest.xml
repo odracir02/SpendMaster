@@ -11,6 +11,12 @@
         android:theme="@style/Theme.SpendMaster"
         tools:targetApi="31">
         <activity
+            android:name=".email"
+            android:exported="false" />
+        <activity
+            android:name=".Economia"
+            android:exported="false" />
+        <activity
             android:name=".gestionarCasa"
             android:exported="false" />
         <activity
@@ -40,9 +46,6 @@
         <activity
             android:name=".login2"
             android:exported="true" />
-        <activity
-            android:name=".components.ActivityLista"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

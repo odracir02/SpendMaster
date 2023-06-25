@@ -36,12 +36,13 @@
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:id="@+id/editProfileButton"
+        android:id="@+id/bvolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar nombre"
-        android:layout_marginTop="24dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/dark_blue"
+        android:text="VOLVER" />
 
     <Button
         android:id="@+id/logoutButton"

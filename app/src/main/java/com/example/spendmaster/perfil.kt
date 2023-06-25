@@ -74,7 +74,14 @@ class perfil : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 // Manejo de errores en caso de fallo
             }
+
+        binding.bvolver.setOnClickListener {
+            val loginIntent =   Intent(this, gestionarelperfil::class.java)
+            startActivity(loginIntent)
+        }
     }
+
+
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)

@@ -20,14 +20,14 @@ class primerapantalla : AppCompatActivity() {
 
         val usuario = intent.getStringExtra("usuario") ?: ""
 
-        binding.button.setOnClickListener {
-            //val intent = Intent(this, pantallaPrincipal::class.java)
+        binding.btGestionCasa.setOnClickListener {
+            val intent = Intent(this, gestionarCasa::class.java)
             intent.putExtra("usuario", usuario)
             startActivity(intent)
         }
 
-        binding.button7.setOnClickListener {
-            //val intent = Intent(this, email::class.java)
+        binding.btEmail.setOnClickListener {
+            val intent = Intent(this, email::class.java)
             intent.putExtra("usuario", usuario)
             startActivity(intent)
         }
