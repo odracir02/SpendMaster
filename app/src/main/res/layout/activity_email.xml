@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".email">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menuEmail"
+        android:layout_width="385dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="415dp"
@@ -108,16 +117,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <Button
-        android:id="@+id/bvolver"
-        android:layout_width="116dp"
-        android:layout_height="48dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="VOLVER"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonemail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

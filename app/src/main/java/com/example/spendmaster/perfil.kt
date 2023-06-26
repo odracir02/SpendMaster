@@ -79,6 +79,10 @@ class perfil : AppCompatActivity() {
             val loginIntent =   Intent(this, gestionarelperfil::class.java)
             startActivity(loginIntent)
         }
+        binding.btLogout.setOnClickListener {
+            val loginIntent =   Intent(this, login2::class.java)
+            startActivity(loginIntent)
+        }
     }
 
 

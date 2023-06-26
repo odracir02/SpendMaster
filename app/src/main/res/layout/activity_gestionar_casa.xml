@@ -6,11 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".primerapantalla">
 
-    <!-- Imagen para la sección de Gestionar casa -->
 
-    <!-- Botón para gestionar la casa -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menuGestionCasa"
+        android:layout_width="385dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 
-    <!-- Imagen para la sección de economía -->
     <ImageView
         android:id="@+id/IvGestionCasa"
         android:layout_width="83dp"
