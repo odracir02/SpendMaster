@@ -1,22 +1,22 @@
 package com.example.spendmaster
 
 import android.content.Intent
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
-import com.example.spendmaster.components.AdapterGasto
-import com.example.spendmaster.components.Gasto
+import android.view.LayoutInflater
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.example.spendmaster.databinding.ActivityEconomiaBinding
-import com.example.spendmaster.databinding.DialogIngresoBinding
 import com.example.spendmaster.databinding.DialogGastoBinding
+import com.example.spendmaster.databinding.DialogIngresoBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Economia : AppCompatActivity() {
 
     private lateinit var binding: ActivityEconomiaBinding
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var adapter: AdapterGasto
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,23 +24,6 @@ class Economia : AppCompatActivity() {
         setContentView(binding.root)
 
         val usuario = intent.getStringExtra("usuario") ?: ""
-        val operacion = db.collection("operacion")
-        val gasto = "Gasto"
-
-        db.collection("operacion")
-            .whereEqualTo("usuario", usuario)
-            .whereEqualTo("isIncome", gasto)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                val gastos = querySnapshot.toObjects(Gasto::class.java)
-
-                adapter = AdapterGasto(gastos)
-                //Este binding es para los recyclerView que aun no funcionan
-                //binding.rvGastos.adapter = adapter
-            }
-            .addOnFailureListener { e ->
-                Log.d("TAG", "Error ocurrido: ${e.localizedMessage}")
-            }
 
         binding.btnAddIncome.setOnClickListener {
             showIncomeDialog()
@@ -82,17 +65,19 @@ class Economia : AppCompatActivity() {
 
                 R.id.navigation_item4 -> {
                     val intent = Intent(this, login2::class.java)
-
                     startActivity(intent)
                     true
                 }
                 else -> false
             }
         }
+
+        loadIngresos(usuario)
+        loadGastos(usuario)
     }
 
     private fun showIncomeDialog() {
-        val dialogBinding = DialogIngresoBinding.inflate(layoutInflater)
+        val dialogBinding = DialogIngresoBinding.inflate(LayoutInflater.from(this))
         val builder = AlertDialog.Builder(this)
         builder.setView(dialogBinding.root)
 
@@ -105,12 +90,7 @@ class Economia : AppCompatActivity() {
             val isIncome = 1
             val category = dialogBinding.spCategory.selectedItem.toString()
             val description = dialogBinding.etDescription.text.toString()
-            val inputText = dialogBinding.etAmountI.text.toString()
-            val value = if (inputText.isNotBlank()) {
-                inputText.toDoubleOrNull() ?: 0.0
-            } else {
-                0.0
-            }
+            val value = dialogBinding.etAmountI.text.toString().toDoubleOrNull() ?: 0.0
 
             if (title.isNotBlank() && category.isNotEmpty()) {
                 val operacionData = hashMapOf<String, Any>(
@@ -130,7 +110,7 @@ class Economia : AppCompatActivity() {
     }
 
     private fun showExpenseDialog() {
-        val dialogBinding = DialogGastoBinding.inflate(layoutInflater)
+        val dialogBinding = DialogGastoBinding.inflate(LayoutInflater.from(this))
         val builder = AlertDialog.Builder(this)
         builder.setView(dialogBinding.root)
 
@@ -143,12 +123,7 @@ class Economia : AppCompatActivity() {
             val isIncome = 0
             val category = dialogBinding.spCategory.selectedItem.toString()
             val description = dialogBinding.etDescription.text.toString()
-            val inputText = dialogBinding.etAmountG.text.toString()
-            val value = if (inputText.isNotBlank()) {
-                inputText.toDoubleOrNull() ?: 0.0
-            } else {
-                0.0
-            }
+            val value = dialogBinding.etAmountG.text.toString().toDoubleOrNull() ?: 0.0
 
             if (title.isNotBlank() && category.isNotEmpty()) {
                 val operacionData = hashMapOf<String, Any>(
@@ -172,9 +147,82 @@ class Economia : AppCompatActivity() {
             .add(operacionData)
             .addOnSuccessListener { documentReference ->
                 Log.d("TAG", "Operación guardada con ID: ${documentReference.id}")
+                val usuario = intent.getStringExtra("usuario") ?: ""
+                loadIngresos(usuario)
+                loadGastos(usuario)
             }
             .addOnFailureListener { e ->
                 Log.d("TAG", "Error al guardar la operación: ${e.localizedMessage}")
             }
     }
+
+    private fun loadIngresos(usuario: String) {
+        db.collection("operacion")
+            .whereEqualTo("isIncome", 1)
+            .get()
+            .addOnSuccessListener { documents ->
+                val ingresosLayout = binding.svIngresos.getChildAt(0) as LinearLayout
+                ingresosLayout.removeAllViews()
+
+                for (document in documents) {
+                    val title = document.getString("title") ?: ""
+                    val category = document.getString("category") ?: ""
+                    val description = document.getString("description") ?: ""
+                    val value = document.getDouble("value") ?: 0.0
+
+                    val ingresoView = LayoutInflater.from(this).inflate(R.layout.item_ingreso, null)
+
+                    val tvTitle = ingresoView.findViewById<TextView>(R.id.tvTitle)
+                    val tvValue = ingresoView.findViewById<TextView>(R.id.tvValue)
+                    val tvCategory = ingresoView.findViewById<TextView>(R.id.tvCategory)
+                    val tvDescription = ingresoView.findViewById<TextView>(R.id.tvDescription)
+
+                    tvTitle.text = title
+                    tvValue.text = value.toString()
+                    tvCategory.text = category
+                    tvDescription.text = description
+
+                    ingresosLayout.addView(ingresoView)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.d("TAG", "Error al cargar los ingresos: ${e.localizedMessage}")
+            }
+    }
+
+
+    private fun loadGastos(usuario: String) {
+        db.collection("operacion")
+            .whereEqualTo("isIncome", 0)
+            .get()
+            .addOnSuccessListener { documents ->
+                val gastosLayout = binding.svGastos.getChildAt(0) as LinearLayout
+                gastosLayout.removeAllViews()
+
+                for (document in documents) {
+                    val title = document.getString("title") ?: ""
+                    val category = document.getString("category") ?: ""
+                    val description = document.getString("description") ?: ""
+                    val value = document.getDouble("value") ?: 0.0
+
+                    val gastoView = LayoutInflater.from(this).inflate(R.layout.item_gasto, null)
+
+                    val tvTitle = gastoView.findViewById<TextView>(R.id.tvTitle)
+                    val tvValue = gastoView.findViewById<TextView>(R.id.tvValue)
+                    val tvCategory = gastoView.findViewById<TextView>(R.id.tvCategory)
+                    val tvDescription = gastoView.findViewById<TextView>(R.id.tvDescription)
+
+                    tvTitle.text = title
+                    tvValue.text = value.toString()
+                    tvCategory.text = category
+                    tvDescription.text = description
+
+                    gastosLayout.addView(gastoView)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.d("TAG", "Error al cargar los gastos: ${e.localizedMessage}")
+            }
+    }
+
 }
