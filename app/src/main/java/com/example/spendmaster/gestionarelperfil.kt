@@ -23,6 +23,16 @@ class gestionarelperfil : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val bottonSheetFragment= mododepantalla()
+        binding.btNegro.setOnClickListener {
+            bottonSheetFragment.show(supportFragmentManager, "mododepantalla")
+        }
+
+        val idiomass= idiomas()
+        binding.btidioma.setOnClickListener {
+            idiomass.show(supportFragmentManager, "idiomas")
+        }
+
         // MENU
         binding.menuGestionPerfil.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

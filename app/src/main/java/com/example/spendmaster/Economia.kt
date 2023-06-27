@@ -35,7 +35,8 @@ class Economia : AppCompatActivity() {
                 val gastos = querySnapshot.toObjects(Gasto::class.java)
 
                 adapter = AdapterGasto(gastos)
-                binding.rvGastos.adapter = adapter
+                //Este binding es para los recyclerView que aun no funcionan
+                //binding.rvGastos.adapter = adapter
             }
             .addOnFailureListener { e ->
                 Log.d("TAG", "Error ocurrido: ${e.localizedMessage}")

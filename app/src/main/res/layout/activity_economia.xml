@@ -65,26 +65,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.5" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGastos"
-        android:layout_width="376dp"
-        android:layout_height="266dp"
-        app:layout_constraintBottom_toTopOf="@+id/rvIngresos"
+    <ScrollView
+        android:id="@+id/svIngresos"
+        android:layout_width="match_parent"
+        android:layout_height="241dp"
+        android:layout_marginTop="8dp"
+        android:speakableText="Ingresos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAmountToDelete"
-        app:layout_constraintVertical_bias="0.451" />
+        app:layout_constraintTop_toBottomOf="@+id/etAmountToDelete">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvIngresos"
-        android:layout_width="366dp"
-        android:layout_height="216dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/svGastos"
+        android:layout_width="match_parent"
+        android:layout_height="241dp"
+        android:layout_marginTop="12dp"
+        android:speakableText="Gastos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAmountToDelete"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintTop_toBottomOf="@+id/svIngresos">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

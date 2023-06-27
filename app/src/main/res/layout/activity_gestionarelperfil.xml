@@ -21,6 +21,7 @@
         android:layout_height="49dp"
         android:text="Gestion de perfil:"
         android:textColor="@color/dark_blue"
+        style="@style/texto"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,24 +30,26 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView24" />
 
     <Button
-        android:id="@+id/botonidioma"
+        android:id="@+id/btidioma"
         android:layout_width="231dp"
         android:layout_height="62dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/dark_blue"
         android:text="Idioma"
+        style="@style/boton"
         app:layout_constraintStart_toEndOf="@+id/imageView04"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/btNegro"
         android:layout_width="231dp"
         android:layout_height="62dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/dark_blue"
         android:text="Modo oscuro/claro"
+        style="@style/boton"
         app:layout_constraintStart_toEndOf="@+id/imageView05"
-        app:layout_constraintTop_toBottomOf="@+id/botonidioma" />
+        app:layout_constraintTop_toBottomOf="@+id/btidioma" />
 
     <ImageView
         android:id="@+id/imageView04"
@@ -62,7 +65,6 @@
         android:id="@+id/imageView08"
         android:layout_width="80dp"
         android:layout_height="55dp"
-
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +75,6 @@
         android:id="@+id/imageView05"
         android:layout_width="80dp"
         android:layout_height="55dp"
-
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +98,8 @@
         android:layout_height="62dp"
         android:layout_marginTop="28dp"
         android:text="Ver perfil"
+        style="@style/boton"
         android:backgroundTint="@color/dark_blue"
         app:layout_constraintStart_toEndOf="@+id/imageView08"
-        app:layout_constraintTop_toBottomOf="@+id/button11" />
+        app:layout_constraintTop_toBottomOf="@+id/btNegro" />
 </androidx.constraintlayout.widget.ConstraintLayout>
