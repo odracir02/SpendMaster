@@ -17,13 +17,14 @@ class Economia : AppCompatActivity() {
 
     private lateinit var binding: ActivityEconomiaBinding
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var usuario: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEconomiaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val usuario = intent.getStringExtra("usuario") ?: ""
+        usuario = intent.getStringExtra("usuario") ?: ""
 
         binding.btnAddIncome.setOnClickListener {
             showIncomeDialog()
@@ -98,7 +99,8 @@ class Economia : AppCompatActivity() {
                     "isIncome" to isIncome,
                     "category" to category,
                     "description" to description,
-                    "value" to value
+                    "value" to value,
+                    "usuario" to usuario
                 )
 
                 saveOperacion(operacionData)
@@ -131,7 +133,8 @@ class Economia : AppCompatActivity() {
                     "isIncome" to isIncome,
                     "category" to category,
                     "description" to description,
-                    "value" to value
+                    "value" to value,
+                    "usuario" to usuario
                 )
 
                 saveOperacion(operacionData)
@@ -147,7 +150,6 @@ class Economia : AppCompatActivity() {
             .add(operacionData)
             .addOnSuccessListener { documentReference ->
                 Log.d("TAG", "Operación guardada con ID: ${documentReference.id}")
-                val usuario = intent.getStringExtra("usuario") ?: ""
                 loadIngresos(usuario)
                 loadGastos(usuario)
             }
@@ -159,6 +161,7 @@ class Economia : AppCompatActivity() {
     private fun loadIngresos(usuario: String) {
         db.collection("operacion")
             .whereEqualTo("isIncome", 1)
+            .whereEqualTo("usuario", usuario)
             .get()
             .addOnSuccessListener { documents ->
                 val ingresosLayout = binding.svIngresos.getChildAt(0) as LinearLayout
@@ -194,6 +197,7 @@ class Economia : AppCompatActivity() {
     private fun loadGastos(usuario: String) {
         db.collection("operacion")
             .whereEqualTo("isIncome", 0)
+            .whereEqualTo("usuario", usuario)
             .get()
             .addOnSuccessListener { documents ->
                 val gastosLayout = binding.svGastos.getChildAt(0) as LinearLayout
@@ -224,5 +228,4 @@ class Economia : AppCompatActivity() {
                 Log.d("TAG", "Error al cargar los gastos: ${e.localizedMessage}")
             }
     }
-
 }
