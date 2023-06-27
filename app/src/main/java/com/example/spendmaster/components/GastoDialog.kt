@@ -49,16 +49,12 @@ class GastoDialog(
             }
 
             val gastoId = UUID.randomUUID().toString()
-            val nombreGrupo = obtenerNombreGrupo()
-            val usuario = obtenerUsuario()
 
             val gastoData = hashMapOf(
                 "Id" to gastoId,
                 "title" to title,
                 "description" to description,
-                "value" to value,
-                "nombreGrupo" to nombreGrupo,
-                "usuario" to usuario
+                "value" to value
             )
 
             guardarGastoFirestore(gastoId, gastoData)
@@ -69,35 +65,6 @@ class GastoDialog(
         dialogBinding.etAmountG.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter())
 
         return dialog
-    }
-
-    private fun obtenerNombreGrupo(): String {
-        var nombreGrupo = ""
-
-        val grupoRef = db.collection("grupo").document("TU_DOCUMENTO_DE_GRUPO")
-
-        grupoRef.get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val document: DocumentSnapshot? = task.result
-                    if (document != null && document.exists()) {
-                        nombreGrupo = document.getString("nombreGrupo") ?: ""
-                    }
-                } else {
-                    // Manejo de error al obtener el valor de nombreGrupo
-                }
-            }
-
-        return nombreGrupo
-    }
-
-
-    private fun obtenerUsuario(): String {
-        // Realiza la consulta a Firestore para obtener el valor de usuario
-        // y devuélvelo como un String
-        // ...
-
-        return "" // Reemplaza esta línea con el código para obtener el valor real
     }
 
     private fun guardarGastoFirestore(gastoId: String, gastoData: Map<String, Any>) {

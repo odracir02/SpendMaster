@@ -55,10 +55,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Agregue un gasto"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberSigned"
+                    android:digits="0123456789."
+                    android:maxLength="11"
                     android:padding="16dp"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <EditText
                 android:id="@+id/etTitulo"
