@@ -17,7 +17,7 @@
         android:background="@color/white"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="8dp"
-        android:hint="Usuario"
+        android:hint="Correo"
         android:padding="8dp"
         android:textColor="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"

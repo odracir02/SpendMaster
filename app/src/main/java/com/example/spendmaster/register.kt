@@ -94,7 +94,7 @@ class register : AppCompatActivity() {
 
     private fun isValidPassword(password: String): Boolean {
         val passwordPattern = Pattern.compile(
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[+=!@#\$%^=&.])(?=\\S+$).{9,20}$"
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[+=!@#\$%^=&._])(?=\\S+$).{9,20}$"
         )
         return passwordPattern.matcher(password).matches()
     }
