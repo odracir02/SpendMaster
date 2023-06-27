@@ -15,4 +15,6 @@
     <color name="dark_purple">#512DA8</color>
     <color name="dark_gray">#424242</color>
     <color name="dark_teal">#00695C</color>
+    <color name="colorIngreso">#F8CECC</color>
+    <color name="colorGasto">#FFF2CC</color>
 </resources>
