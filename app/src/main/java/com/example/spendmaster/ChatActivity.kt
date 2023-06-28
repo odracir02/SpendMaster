@@ -71,13 +71,19 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun sendMessage() {
-        val message = Message(
-            message = binding.messageTextField.text.toString(),
-            from = user
-        )
+        val messageText = binding.messageTextField.text.toString().trim()
 
-        db.collection("chats").document(chatId).collection("messages").document().set(message)
+        if (messageText.isNotEmpty()) {
+            val capitalizedMessage = messageText.capitalize()
 
-        binding.messageTextField.setText("")
+            val message = Message(
+                message = capitalizedMessage,
+                from = user
+            )
+
+            db.collection("chats").document(chatId).collection("messages").document().set(message)
+
+            binding.messageTextField.setText("")
+        }
     }
 }

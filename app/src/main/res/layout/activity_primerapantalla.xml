@@ -20,35 +20,11 @@
         android:id="@+id/btGestionCasa"
         android:layout_width="231dp"
         android:layout_height="61dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="284dp"
         android:backgroundTint="@color/dark_blue"
-        android:text="Gestionar casa"
+        android:text="Gestionar economia de la casa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btGestionPerfil"
-        android:layout_width="231dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="604dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="Perfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.661"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/botonchat"
-        android:layout_width="231dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="420dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="chat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,21 +32,22 @@
         android:id="@+id/imageView2334"
         android:layout_width="83dp"
         android:layout_height="62dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="372dp"
         android:src="@drawable/dialogo"
         app:layout_constraintEnd_toStartOf="@+id/botonchat"
-        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintHorizontal_bias="0.767"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2333"
-        android:layout_width="83dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="328dp"
-        android:src="@drawable/proyecto"
-        app:layout_constraintEnd_toStartOf="@+id/btCrearGrupo"
-        app:layout_constraintHorizontal_bias="0.722"
+    <Button
+        android:id="@+id/botonchat"
+        android:layout_width="231dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="372dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,11 +55,10 @@
         android:id="@+id/imageView2234"
         android:layout_width="83dp"
         android:layout_height="62dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="508dp"
+        android:layout_marginTop="460dp"
         android:src="@drawable/email"
         app:layout_constraintEnd_toStartOf="@+id/btEmail"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,34 +66,23 @@
         android:id="@+id/btEmail"
         android:layout_width="231dp"
         android:layout_height="61dp"
-        android:layout_marginTop="508dp"
+        android:layout_marginTop="460dp"
         android:backgroundTint="@color/dark_blue"
         android:text="mandar correo electronico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btCrearGrupo"
+        android:id="@+id/btGestionPerfil"
         android:layout_width="231dp"
         android:layout_height="61dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="548dp"
         android:backgroundTint="@color/dark_blue"
-        android:text="Crear grupo"
+        android:text="Perfil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.661"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView23"
-        android:layout_width="83dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="232dp"
-        android:src="@drawable/adminproyecto"
-        app:layout_constraintEnd_toStartOf="@+id/btGestionCasa"
-        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,10 +90,21 @@
         android:id="@+id/imageView2634"
         android:layout_width="83dp"
         android:layout_height="62dp"
-        android:layout_marginTop="604dp"
+        android:layout_marginTop="548dp"
         android:src="@drawable/administrar"
         app:layout_constraintEnd_toStartOf="@+id/btGestionPerfil"
-        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="83dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="284dp"
+        android:src="@drawable/adminproyecto"
+        app:layout_constraintEnd_toStartOf="@+id/btGestionCasa"
+        app:layout_constraintHorizontal_bias="0.767"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -22,7 +22,7 @@ class primerapantalla : AppCompatActivity() {
         val usuario = intent.getStringExtra("usuario") ?: ""
 
         binding.btGestionCasa.setOnClickListener {
-            val intent = Intent(this, gestionarCasa::class.java)
+            val intent = Intent(this, Economia::class.java)
             intent.putExtra("usuario", usuario)
             startActivity(intent)
         }
