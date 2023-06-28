@@ -3,6 +3,9 @@ package com.example.spendmaster
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +13,7 @@ import com.example.spendmaster.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
+import com.example.spendmaster.register
 
 class register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -24,6 +28,12 @@ class register : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         val collection = firestore.collection("usuarios")
 
+        binding.root.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                hideKeyboard()
+            }
+            false
+        }
 
         binding.bregistrar.setOnClickListener {
             val email = binding.tcorreo.text.toString()
@@ -107,5 +117,13 @@ class register : AppCompatActivity() {
             }
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        currentFocus?.let {
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+            it.clearFocus()
+        }
     }
 }

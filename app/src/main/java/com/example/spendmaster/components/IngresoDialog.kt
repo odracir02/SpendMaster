@@ -1,9 +1,12 @@
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
@@ -30,6 +33,11 @@ class IngresoDialog(
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        dialogBinding.root.setOnTouchListener { _, event ->
+            hideKeyboard()
+            false
+        }
+
         dialogBinding.bAddIngreso.setOnClickListener {
             val title = dialogBinding.etTitulo.text.toString()
             val description = dialogBinding.etDescription.text.toString()
@@ -41,16 +49,12 @@ class IngresoDialog(
             }
 
             val operacionId = UUID.randomUUID().toString()
-            val nombreGrupo = obtenerNombreGrupo()
-            val usuario = obtenerUsuario()
 
             val operacionData = hashMapOf(
                 "Id" to operacionId,
                 "title" to title,
                 "description" to description,
-                "value" to value,
-                "nombreGrupo" to nombreGrupo,
-                "usuario" to usuario
+                "value" to value
             )
 
             guardarOperacionFirestore(operacionId, operacionData)
@@ -61,22 +65,6 @@ class IngresoDialog(
         dialogBinding.etAmountI.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter())
 
         return dialog
-    }
-
-    private fun obtenerNombreGrupo(): String {
-        // Realiza la consulta a Firestore para obtener el valor de nombreGrupo
-        // y devuélvelo como un String
-        // ...
-
-        return "" // Reemplaza esta línea con el código para obtener el valor real
-    }
-
-    private fun obtenerUsuario(): String {
-        // Realiza la consulta a Firestore para obtener el valor de usuario
-        // y devuélvelo como un String
-        // ...
-
-        return "" // Reemplaza esta línea con el código para obtener el valor real
     }
 
     private fun guardarOperacionFirestore(operacionId: String, operacionData: Map<String, Any>) {
@@ -109,5 +97,10 @@ class IngresoDialog(
                 ""
             }
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

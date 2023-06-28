@@ -1,11 +1,10 @@
 package com.example.spendmaster
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
-
 import com.example.spendmaster.databinding.ActivityPrimerapantallaBinding
 
 private const val CHAT_FRAGMENT = "chat_fragment"
@@ -21,6 +20,11 @@ class primerapantalla : AppCompatActivity() {
 
         val usuario = intent.getStringExtra("usuario") ?: ""
 
+        binding.root.setOnTouchListener { _, event ->
+            hideKeyboard()
+            false
+        }
+
         binding.btGestionCasa.setOnClickListener {
             val intent = Intent(this, Economia::class.java)
             intent.putExtra("usuario", usuario)
@@ -29,12 +33,6 @@ class primerapantalla : AppCompatActivity() {
 
         binding.btEmail.setOnClickListener {
             val intent = Intent(this, email::class.java)
-            intent.putExtra("usuario", usuario)
-            startActivity(intent)
-        }
-
-        binding.btCrearGrupo.setOnClickListener {
-            val intent = Intent(this, crearGrupo::class.java)
             intent.putExtra("usuario", usuario)
             startActivity(intent)
         }
@@ -88,14 +86,19 @@ class primerapantalla : AppCompatActivity() {
 
                 R.id.navigation_item4 -> {
                     val intent = Intent(this, login2::class.java)
-
                     startActivity(intent)
                     true
                 }
                 else -> false
             }
         }
+    }
 
-
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        currentFocus?.let {
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+            it.clearFocus()
+        }
     }
 }

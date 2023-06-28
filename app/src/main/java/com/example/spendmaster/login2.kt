@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import com.example.spendmaster.databinding.ActivityLogin2Binding
@@ -20,7 +23,12 @@ class login2 : AppCompatActivity() {
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
 
-
+        binding.root.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                hideKeyboard()
+            }
+            false
+        }
 
         binding.biniciarsesion.setOnClickListener {
             val email = binding.usuario.text.toString()
@@ -68,6 +76,14 @@ class login2 : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Ingresa tu correo electrónico", Toast.LENGTH_LONG).show()
             }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        currentFocus?.let {
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+            it.clearFocus()
         }
     }
 }

@@ -5,6 +5,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.spendmaster.databinding.ActivityEmailBinding
@@ -17,6 +19,12 @@ class email : AppCompatActivity() {
         binding = ActivityEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val usuario = intent.getStringExtra("usuario") ?: ""
+
+        binding.root.setOnTouchListener { _, event ->
+            hideKeyboard()
+            false
+        }
+
         binding.botonemail.setOnClickListener {
             val email = binding.textousuarioO30.text.toString()
             val asunto = binding.textousuarioO17.text.toString()
@@ -30,9 +38,6 @@ class email : AppCompatActivity() {
                 putExtra(Intent.EXTRA_SUBJECT, asunto)
                 putExtra(Intent.EXTRA_TEXT, mensaje)
             }
-
-            startActivity(intent)
-
 
             // Verificar si la aplicación de Gmail está instalada
             val manager = packageManager
@@ -83,12 +88,19 @@ class email : AppCompatActivity() {
 
                 R.id.navigation_item4 -> {
                     val intent = Intent(this, login2::class.java)
-
                     startActivity(intent)
                     true
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        currentFocus?.let {
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+            it.clearFocus()
         }
     }
 }
