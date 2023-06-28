@@ -45,7 +45,7 @@ class email : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this,
-                    "Aplicación de Gmail no instalada",
+                    "Abriendo Gmail",
                     Toast.LENGTH_LONG
                 ).show()
             }

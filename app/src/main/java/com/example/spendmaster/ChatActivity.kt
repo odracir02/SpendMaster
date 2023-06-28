@@ -10,14 +10,13 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
 class ChatActivity : AppCompatActivity() {
     private var chatId = ""
     private var user = ""
 
     private var db = Firebase.firestore
     private lateinit var binding: ActivityChatBinding
-
+    private lateinit var messageAdapter: MessageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +26,13 @@ class ChatActivity : AppCompatActivity() {
         intent.getStringExtra("chatId")?.let { chatId = it }
         intent.getStringExtra("user")?.let { user = it }
 
-        if(chatId.isNotEmpty() && user.isNotEmpty()) {
+        if (chatId.isNotEmpty() && user.isNotEmpty()) {
             initViews()
         }
     }
 
-    private fun initViews(){
-        binding.messagesRecylerView.layoutManager = LinearLayoutManager(this)
-        binding.messagesRecylerView.adapter = MessageAdapter(user)
-
+    private fun initViews() {
+        initRecyclerView()
         binding.sendMessageButton.setOnClickListener { sendMessage() }
 
         val chatRef = db.collection("chats").document(chatId)
@@ -44,21 +41,36 @@ class ChatActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { messages ->
                 val listMessages = messages.toObjects(Message::class.java)
-                (binding.messagesRecylerView.adapter as MessageAdapter).setData(listMessages)
+                messageAdapter.setData(listMessages)
+                scrollToBottom()
             }
 
         chatRef.collection("messages").orderBy("dob", Query.Direction.ASCENDING)
             .addSnapshotListener { messages, error ->
-                if(error == null){
+                if (error == null) {
                     messages?.let {
                         val listMessages = it.toObjects(Message::class.java)
-                        (binding.messagesRecylerView.adapter as MessageAdapter).setData(listMessages)
+                        messageAdapter.setData(listMessages)
+                        scrollToBottom()
                     }
                 }
             }
     }
 
-    private fun sendMessage(){
+    private fun initRecyclerView() {
+        messageAdapter = MessageAdapter(user)
+        binding.messagesRecylerView.apply {
+            layoutManager = LinearLayoutManager(this@ChatActivity)
+            adapter = messageAdapter
+        }
+    }
+
+    private fun scrollToBottom() {
+        val itemCount = messageAdapter.itemCount
+        binding.messagesRecylerView.scrollToPosition(itemCount - 1)
+    }
+
+    private fun sendMessage() {
         val message = Message(
             message = binding.messageTextField.text.toString(),
             from = user
@@ -67,6 +79,5 @@ class ChatActivity : AppCompatActivity() {
         db.collection("chats").document(chatId).collection("messages").document().set(message)
 
         binding.messageTextField.setText("")
-
     }
 }
