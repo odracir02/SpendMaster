@@ -12,12 +12,16 @@ import com.example.spendmaster.databinding.ActivityEconomiaBinding
 import com.example.spendmaster.databinding.DialogGastoBinding
 import com.example.spendmaster.databinding.DialogIngresoBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.DecimalFormat
 
 class Economia : AppCompatActivity() {
 
     private lateinit var binding: ActivityEconomiaBinding
     private val db = FirebaseFirestore.getInstance()
     private lateinit var usuario: String
+    private var balance: Double = 0.0
+    private var totalIngresos: Double = 0.0
+    private var totalGastos: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +79,7 @@ class Economia : AppCompatActivity() {
 
         loadIngresos(usuario)
         loadGastos(usuario)
+        calculateBalance()
     }
 
     private fun showIncomeDialog() {
@@ -145,6 +150,40 @@ class Economia : AppCompatActivity() {
         }
     }
 
+    private fun updateBalanceTextView() {
+        val balanceTextView = binding.balance
+        balanceTextView.text = "Balance: $balance"
+    }
+    private fun calculateBalance() {
+        db.collection("operacion")
+            .whereEqualTo("usuario", usuario)
+            .get()
+            .addOnSuccessListener { documents ->
+                var totalIngresos = 0.0
+                var totalGastos = 0.0
+
+                for (document in documents) {
+                    val isIncome = document.getLong("isIncome") ?: 0
+                    val value = document.getDouble("value") ?: 0.0
+
+                    if (isIncome == 1L) {
+                        totalIngresos += value
+                    } else {
+                        totalGastos += value
+                    }
+
+                    val decimalFormat = DecimalFormat("#.00")
+                    val balance = decimalFormat.format(totalIngresos - totalGastos)
+                    binding.balance.text = balance
+                }
+
+                balance = totalIngresos - totalGastos
+                updateBalanceTextView()
+            }
+            .addOnFailureListener { e ->
+                Log.d("TAG", "Error al cargar las operaciones: ${e.localizedMessage}")
+            }
+    }
     private fun saveOperacion(operacionData: HashMap<String, Any>) {
         db.collection("operacion")
             .add(operacionData)
@@ -152,6 +191,7 @@ class Economia : AppCompatActivity() {
                 Log.d("TAG", "Operación guardada con ID: ${documentReference.id}")
                 loadIngresos(usuario)
                 loadGastos(usuario)
+                calculateBalance() // Calcular y actualizar el saldo
             }
             .addOnFailureListener { e ->
                 Log.d("TAG", "Error al guardar la operación: ${e.localizedMessage}")
